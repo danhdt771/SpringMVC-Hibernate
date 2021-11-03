@@ -7,23 +7,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "product_category")
-public class ProductCategory {
+@Table(name = "order_items")
+public class OrderItems {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "name", length = 100, nullable = false)
-	private String name;
+	@ManyToOne
+	@Column(name = "order_id", nullable = false)
+	private Order order;
 	
-	@Column(name = "desc")
-	private String desc;
+	@Column(name = "product_id", nullable = false)
+	private Product product;
+	
+	@Column(name = "quantity", nullable = false)
+	private int quantity;
+	
+	@Column(name = "total", nullable = false)
+	private double total;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", nullable = false)
@@ -33,7 +41,7 @@ public class ProductCategory {
 	@Column(name = "updated_at", nullable = false)
 	private Date updated_at;
 	
-	public ProductCategory() {
+	public OrderItems() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,20 +53,36 @@ public class ProductCategory {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
-	public String getDesc() {
-		return desc;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
 	public Date getCreated_at() {

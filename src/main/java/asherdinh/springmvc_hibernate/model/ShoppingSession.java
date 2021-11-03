@@ -7,23 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "product_category")
-public class ProductCategory {
+@Table(name = "shopping_session")
+public class ShoppingSession {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "name", length = 100, nullable = false)
-	private String name;
-	
-	@Column(name = "desc")
-	private String desc;
+	@OneToOne
+	@Column(name = "user_id", nullable = false)
+	private User user;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", nullable = false)
@@ -33,7 +32,7 @@ public class ProductCategory {
 	@Column(name = "updated_at", nullable = false)
 	private Date updated_at;
 	
-	public ProductCategory() {
+	public ShoppingSession() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,20 +44,12 @@ public class ProductCategory {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public User getUser() {
+		return user;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Date getCreated_at() {

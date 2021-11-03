@@ -7,23 +7,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "product_category")
-public class ProductCategory {
+@Table(name = "cart_item")
+public class CartItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "name", length = 100, nullable = false)
-	private String name;
+	@ManyToOne
+	@Column(name = "session_id", nullable = false)
+	private ShoppingSession shoppingSession;
 	
-	@Column(name = "desc")
-	private String desc;
+	@Column(name = "product_id", nullable = false)
+	private long product_id;
+	
+	@Column(name = "quantity", nullable = false)
+	private int quantity;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", nullable = false)
@@ -33,7 +38,7 @@ public class ProductCategory {
 	@Column(name = "updated_at", nullable = false)
 	private Date updated_at;
 	
-	public ProductCategory() {
+	public CartItem() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,20 +50,28 @@ public class ProductCategory {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public ShoppingSession getShoppingSession() {
+		return shoppingSession;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setShoppingSession(ShoppingSession shoppingSession) {
+		this.shoppingSession = shoppingSession;
 	}
 
-	public String getDesc() {
-		return desc;
+	public long getProduct_id() {
+		return product_id;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setProduct_id(long product_id) {
+		this.product_id = product_id;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public Date getCreated_at() {

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +35,7 @@ public class Product {
 	@JoinColumn(name = "category_id", nullable = false)
 	private ProductCategory productCategory;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "inventory_id", nullable = false)
 	private ProductInventory productInventory;
 	
